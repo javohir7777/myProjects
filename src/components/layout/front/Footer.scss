@@ -1,0 +1,35 @@
+footer {
+  background: var(--Black, #232536);
+  .footer-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 54px 0;
+    .footer-text {
+      .footer-text {
+        color: var(--Light, #fff);
+        opacity: 0.7;
+        /* Body 1 */
+        font-family: Inter;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 28px; /* 175% */
+      }
+    }
+    .footer-icons {
+      display: flex;
+      gap: 26px;
+    }
+  }
+}
+@media only screen and (max-width: 460px) {
+  footer {
+    .footer-flex {
+      display: grid;
+      .footer-icons {
+        padding:10px 0;
+      }
+    }
+  }
+}
