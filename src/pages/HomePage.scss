@@ -98,6 +98,7 @@
   .card {
     width: 405px;
     border: none;
+
     &:active {
       box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px,
         rgba(17, 17, 26, 0.05) 0px 8px 32px;
@@ -146,10 +147,93 @@
   }
 }
 
+.category {
+  padding: 69px 0 73px 0;
+  .choose {
+    color: var(--Black, #232536);
+    text-align: center;
+    /* Heading H2 */
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 48px; /* 133.333% */
+    letter-spacing: -2px;
+    padding: 0 0 50px 0;
+  }
+  .card-link {
+    text-decoration: none;
+    .card-category {
+      width: 274px;
+      height: 221.072px;
+      border: 1px solid var(--Medium-grey, #999);
+      margin-left: 20px;
+      &:active {
+        background: var(--Yellow, #ffd050);
+        border: 1px solid #fff;
+      }
+      .card {
+        width: 48px;
+        height: 46.541px;
+        margin-top: 31px;
+        margin-left: 32px;
+        padding: 5px 0 12px 0;
+        img {
+          width: 70px;
+          height: 50px;
+        }
+      }
+      .category-textes {
+        padding: 10px 0 0 32px;
+        .category-h1 {
+          color: var(--Black, #232536);
+          /* Heading H3 */
+          font-size: 28px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: 40px; /* 142.857% */
+          letter-spacing: -1px;
+        }
+        .category-p {
+          color: var(--Medium-grey, #6d6e76);
+
+          /* Body 1 */
+          font-family: Inter;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 28px; /* 175% */
+          width: 232px;
+        }
+      }
+    }
+  }
+}
+
 @media only screen and (max-width: 1400px) {
   .popular {
     .card {
       width: 100%;
+    }
+  }
+  .category {
+    .card-link {
+      .card-category {
+        width: 92%;
+        .category-textes {
+          .category-p {
+            width: 96%;
+          }
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 1200px) {
+  .category {
+    .card-link {
+      .card-category {
+        width: 90%;
+      }
     }
   }
 }

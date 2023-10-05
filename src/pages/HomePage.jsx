@@ -4,7 +4,6 @@ import { requies } from "../server";
 import { Link } from "react-router-dom";
 
 import man from "../assets/photo/man.png";
-import women from "../assets/women/women.png";
 
 import "swiper/css";
 
@@ -14,12 +13,12 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 const HomePage = () => {
   const [post, setPost] = useState({});
   const [posts, setPosts] = useState([]);
-
+  const [category, setCategory] = useState([]);
   const [data, setData] = useState("");
-
   useEffect(() => {
     getPost();
     getPosts();
+    getCategory();
   }, []);
 
   const getPost = async () => {
@@ -41,13 +40,48 @@ const HomePage = () => {
     }
   };
 
+  const getCategory = async () => {
+    try {
+      const {
+        data: { data },
+      } = await requies.get(`/category`);
+      setCategory(data);
+    } catch (err) {
+      toast.error(err);
+    }
+  };
+
+  const responsive2 = {
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 4,
+      partialVisibilityGutter: 30,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2,
+      partialVisibilityGutter: 10,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+      partialVisibilityGutter: 10,
+    },
+  };
+
   const time = new Date(data).toLocaleDateString("en-Us", {
     year: "numeric",
     month: "short",
     day: "numeric",
   });
-
-  console.log(posts);
+  // let setTimes = posts.map((post) =>
+  //   new Date(post?.createdAt.split("T")[0]).toLocaleDateString("en-Us", {
+  //     year: "numeric",
+  //     month: "short",
+  //     day: "numeric",
+  //   })
+  // );
+  // console.log(times);
   return (
     <Fragment>
       <div
@@ -110,7 +144,9 @@ const HomePage = () => {
               <SwiperSlide key={post._id}>
                 <div className="card">
                   <LazyLoadImage
-                    src={`https://blog-backend-production-a0a8.up.railway.app/api/v1/upload/${post?.photo?._id}.jpg`}
+                    src={`https://blog-backend-production-a0a8.up.railway.app/api/v1/upload/${
+                      post?.photo?._id
+                    }.${post?.photo.name.split(".")[1]}`}
                     className="card-img-top"
                     effect="blur"
                     alt="..."
@@ -121,7 +157,7 @@ const HomePage = () => {
                       <span className="cart-name__span">
                         {post?.user?.first_name} {post?.user?.last_name}
                       </span>{" "}
-                      l Aug 23, 2021{" "}
+                      l Aug 23, 2021
                     </p>
                     <h5 className="card-title"> {post?.title}</h5>
                     <p className="cart-p">{post?.description}</p>
@@ -132,6 +168,54 @@ const HomePage = () => {
           </Swiper>
         </div>
       </section>
+      <div className="container category">
+        <h1 className="choose">Choose A Catagory</h1>
+        <Swiper
+          spaceBetween={50}
+          slidesPerView={3}
+          onSlideChange={() => console.log("slide change")}
+          onSwiper={(swiper) => console.log(swiper)}
+          breakpoints={{
+            320: {
+              slidesPerView: 1,
+              spaceBetween: 10,
+            },
+            // when window width is >= 480px
+            480: {
+              slidesPerView: 1,
+              spaceBetween: 10,
+            },
+            576: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            768: {
+              slidesPerView: 3,
+              spaceBetween: 30,
+            },
+            992: {
+              slidesPerView: 4,
+              spaceBetween: 40,
+            },
+          }}
+        >
+          {category.map((post) => (
+            <SwiperSlide key={post._id}>
+              <Link to={`category/${post._id}`} className="card-link">
+                <div className="card-category">
+                  <div className="card">
+                    <LazyLoadImage src={man} effect="blur" alt="" />
+                  </div>
+                  <div className="category-textes">
+                    <h1 className="category-h1">{post.name}</h1>
+                    <p className="category-p">{post.description}</p>
+                  </div>
+                </div>
+              </Link>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
     </Fragment>
   );
 };
