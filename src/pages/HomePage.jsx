@@ -204,7 +204,11 @@ const HomePage = () => {
               <Link to={`category/${post._id}`} className="card-link">
                 <div className="card-category">
                   <div className="card">
-                    <LazyLoadImage src={man} effect="blur" alt="" />
+                    <LazyLoadImage
+                      src={`https://blog-backend-production-a0a8.up.railway.app/upload/${post?.photo?._id}.jpg`}
+                      effect="blur"
+                      alt=""
+                    />
                   </div>
                   <div className="category-textes">
                     <h1 className="category-h1">{post.name}</h1>

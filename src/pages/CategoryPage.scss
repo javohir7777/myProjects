@@ -1,0 +1,103 @@
+.one-category {
+  background: var(--Lavender, #f4f0f8);
+  padding: 80px 0 80px 0;
+  text-align: center;
+  .one-category__h1 {
+    color: var(--Black, #232536);
+    text-align: center;
+
+    /* Display */
+    font-size: 56px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 64px; /* 114.286% */
+    letter-spacing: -2px;
+  }
+  .one-category__p {
+    color: var(--Medium-grey, #6d6e76);
+    text-align: center;
+    padding: 16px 0 32px 0;
+    /* Body 1 */
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px; /* 175% */
+  }
+  .one-category__text {
+    color: var(--Black, #232536);
+    text-align: center;
+
+    /* Cap 03 */
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px; /* 125% */
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+}
+.categoryies-flex {
+  display: flex;
+  gap: 48px;
+  padding: 0 0 32px 0;
+  img {
+    width: 447.65px;
+    height: 312px;
+  }
+  .categoryies-texts {
+    .categoryies-h3 {
+      color: var(--Purple, #592ea9);
+      /* Cap 1 */
+      font-family: Inter;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 20px; /* 125% */
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+    .categoryies-h4 {
+      color: var(--Black, #232536);
+      padding: 20px 0 64px 0;
+
+      /* Heading H2 */
+      font-size: 36px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 48px; /* 133.333% */
+      letter-spacing: -2px;
+    }
+    .categoryies-p {
+      color: var(--Medium-grey, #6d6e76);
+
+      /* Body 1 */
+      font-family: Inter;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 28px; /* 175% */
+    }
+  }
+}
+@media only screen and (max-width: 768px) {
+  .categoryies-flex {
+    display: block;
+    text-align: center;
+    .categoryies-texts {
+      .categoryies-h4 {
+        padding: 20px 0 0 0;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 468px) {
+  .categoryies-flex {
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
