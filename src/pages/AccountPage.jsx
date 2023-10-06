@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import LogautPage from "./LogautPage";
 import "./Register.scss";
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
@@ -7,11 +8,14 @@ import { TOKEN } from "../container";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
 
-const LoginPage = () => {
+const AccountPage = () => {
   const navigate = useNavigate();
   const [input, setInput] = useState({
+    firstname: "",
+    lastname: "",
     username: "",
     password: "",
+    confirmpassword: "",
   });
   const { setIsAuthenticed } = useContext(AuthContext);
 
@@ -24,47 +28,66 @@ const LoginPage = () => {
     try {
       const {
         data: { token },
-      } = await requies.post("auth/login", input);
+      } = await requies.post("auth/register", input);
       console.log(token);
       Cookies.set(TOKEN, token);
-      setIsAuthenticed(true);
-      navigate("/my-blogs");
+      setIsAuthenticed(false);
+      Cookies.remove(TOKEN);
+      navigate("/");
     } catch (err) {
       toast.error("Error");
     }
   };
-
   return (
     <div className="register container">
-      <h1 className="register-h1">Login</h1>
+      <LogautPage />
+      <h1 className="register-h1">Account</h1>
       <form className="register-form">
         <input
+          onChange={handleInput}
+          name="firstname"
+          className="register-input"
+          type="text"
+          placeholder="firstName"
+        />
+        <input
+          onChange={handleInput}
+          name="lastname"
+          className="register-input"
+          type="text"
+          placeholder="Lastname"
+        />
+        <input
+          onChange={handleInput}
           name="username"
           className="register-input"
-          id="username"
-          onChange={handleInput}
           type="text"
           placeholder="Username"
         />
         <input
+          onChange={handleInput}
           name="password"
           className="register-input"
-          onChange={handleInput}
-          id="password"
           type="password"
           placeholder="Password"
         />
-
+        <input
+          onChange={handleInput}
+          name="confirmpassword"
+          className="register-input"
+          type="password"
+          placeholder="Confirm password"
+        />
         <button
           className="register-input register-submit"
           type="submit"
           onClick={login}
         >
-          Login
+          Save
         </button>
       </form>
     </div>
   );
 };
 
-export default LoginPage;
+export default AccountPage;

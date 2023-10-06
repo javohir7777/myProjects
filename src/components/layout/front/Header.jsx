@@ -2,9 +2,12 @@ import { NavLink } from "react-router-dom";
 
 import "./Header.scss";
 import logo from "../../../assets/brand/Logo.png";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../../context/AuthContext";
 
 const Header = () => {
+  const { isAuthenticed } = useContext(AuthContext);
+
   const [hamburger, setHamburger] = useState(false);
   const openHamburger = () => {
     setHamburger(!hamburger);
@@ -14,7 +17,15 @@ const Header = () => {
       <div className="container">
         <div className="nav">
           <div className="nav-brand">
-            <img src={logo} alt="" />
+            {isAuthenticed ? (
+              <NavLink className="nav-menu__items" to="/my-blogs">
+                My blogs
+              </NavLink>
+            ) : (
+              <NavLink to="/">
+                <img src={logo} alt="" />
+              </NavLink>
+            )}
             <i
               className="fa-solid fa-bars"
               style={{ color: "#ffffff" }}
@@ -38,9 +49,15 @@ const Header = () => {
                 Register
               </NavLink>
             </ul>
-            <NavLink className="nav-menu__btn" to="/login">
-              Login
-            </NavLink>
+            {isAuthenticed ? (
+              <NavLink className="nav-menu__btn" to="/account">
+                Account
+              </NavLink>
+            ) : (
+              <NavLink className="nav-menu__btn" to="/login">
+                Login
+              </NavLink>
+            )}
           </div>
         </div>
       </div>

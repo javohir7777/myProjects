@@ -1,0 +1,9 @@
+.lagout {
+  display: flex;
+  justify-content: end;
+  .lagout-btn {
+    background: var(--Yellow, #ffd050);
+    padding: 16px 48px;
+    border: none;
+  }
+}
