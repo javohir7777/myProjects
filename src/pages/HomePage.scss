@@ -107,6 +107,7 @@
       }
       .card-img-top {
         height: 200px;
+        width: 400px;
         object-fit: cover;
       }
       .card-body {
@@ -217,8 +218,13 @@
 
 @media only screen and (max-width: 1400px) {
   .popular {
-    .card {
-      width: 100%;
+    .card-decoration {
+      .card {
+        width: 100%;
+        .card-img-top {
+          width: 100%;
+        }
+      }
     }
   }
   .category {
