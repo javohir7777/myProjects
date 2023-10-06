@@ -28,8 +28,8 @@ const Header = () => {
               <NavLink className="nav-menu__link" to="/">
                 Home
               </NavLink>
-              <NavLink className="nav-menu__link" to="/blog">
-                Blog post
+              <NavLink className="nav-menu__link" to="/posts">
+                All posts
               </NavLink>
               <NavLink className="nav-menu__link" to="/about">
                 About Us

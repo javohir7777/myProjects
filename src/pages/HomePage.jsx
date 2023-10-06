@@ -51,24 +51,6 @@ const HomePage = () => {
     }
   };
 
-  const responsive2 = {
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 4,
-      partialVisibilityGutter: 30,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
-      partialVisibilityGutter: 10,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-      partialVisibilityGutter: 10,
-    },
-  };
-
   const time = new Date(data).toLocaleDateString("en-Us", {
     year: "numeric",
     month: "short",
@@ -82,6 +64,7 @@ const HomePage = () => {
   //   })
   // );
   // console.log(times);
+  console.log(posts[1]?.photo?._id);
   return (
     <Fragment>
       <div
@@ -142,27 +125,29 @@ const HomePage = () => {
           >
             {posts.map((post) => (
               <SwiperSlide key={post._id}>
-                <div className="card">
-                  <LazyLoadImage
-                    src={`https://blog-backend-production-a0a8.up.railway.app/api/v1/upload/${
-                      post?.photo?._id
-                    }.${post?.photo.name.split(".")[1]}`}
-                    className="card-img-top"
-                    effect="blur"
-                    alt="..."
-                  />
-                  <div className="card-body">
-                    <p className="cart-name">
-                      By{" "}
-                      <span className="cart-name__span">
-                        {post?.user?.first_name} {post?.user?.last_name}
-                      </span>{" "}
-                      l Aug 23, 2021
-                    </p>
-                    <h5 className="card-title"> {post?.title}</h5>
-                    <p className="cart-p">{post?.description}</p>
+                <Link to={`blog/${post._id}`} className="card-decoration">
+                  <div className="card">
+                    <LazyLoadImage
+                      src={`https://blog-backend-production-a0a8.up.railway.app/upload/${
+                        post?.photo?._id
+                      }.${post?.photo.name.split(".")[1]}`}
+                      className="card-img-top"
+                      effect="blur"
+                      alt="..."
+                    />
+                    <div className="card-body">
+                      <p className="cart-name">
+                        By{" "}
+                        <span className="cart-name__span">
+                          {post?.user?.first_name} {post?.user?.last_name}
+                        </span>{" "}
+                        l Aug 23, 2021
+                      </p>
+                      <h5 className="card-title"> {post?.title}</h5>
+                      <p className="cart-p">{post?.description}</p>
+                    </div>
                   </div>
-                </div>
+                </Link>
               </SwiperSlide>
             ))}
           </Swiper>
@@ -205,7 +190,10 @@ const HomePage = () => {
                 <div className="card-category">
                   <div className="card">
                     <LazyLoadImage
-                      src={`https://blog-backend-production-a0a8.up.railway.app/upload/${post?.photo?._id}.jpg`}
+                      className="lazy-img"
+                      src={`https://blog-backend-production-a0a8.up.railway.app/upload/${
+                        post?.photo?._id
+                      }.${post?.photo.name.split(".")[1]}`}
                       effect="blur"
                       alt=""
                     />
