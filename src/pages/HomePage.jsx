@@ -178,25 +178,25 @@ const HomePage = () => {
             onSwiper={(swiper) => console.log(swiper)}
             breakpoints={{
               320: {
-                slidesPerView: 1,
-                spaceBetween: 10,
+                slidesPerView: 1.2,
+                spaceBetween: 0,
               },
-              // when window width is >= 480px
-              480: {
-                slidesPerView: 1,
-                spaceBetween: 10,
+
+              500: {
+                slidesPerView: 1.7,
+                spaceBetween: 0,
               },
-              576: {
-                slidesPerView: 2,
-                spaceBetween: 20,
+              800: {
+                slidesPerView: 2.5,
+                spaceBetween: 0,
               },
-              768: {
-                slidesPerView: 3,
-                spaceBetween: 30,
+              1000: {
+                slidesPerView: 3.5,
+                spaceBetween: 0,
               },
-              992: {
-                slidesPerView: 4,
-                spaceBetween: 40,
+              1400: {
+                slidesPerView: 4.5,
+                spaceBetween: 0,
               },
             }}
           >
